@@ -1,0 +1,400 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Web Eskul</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <script src="https://kit.fontawesome.com/597adb3636.js" crossorigin="anonymous"></script>
+        <!--STYLE START-->
+    <style>
+  :root{
+    --cream: #f8f9fa;
+    --cream-card: #ffffff;
+    --ink: #212529;
+    --ink-soft: #5f6368;
+    --rust: #0d6efd;
+    --rust-dark: #0b5ed7;
+    --line: #dee2e6;
+  }
+  * { box-sizing: border-box; }
+  body{
+    margin:0;
+    background: var(--cream);
+    color: var(--ink);
+    font-family: Arial, Helvetica, sans-serif;
+    line-height: 1.55;
+  }
+  a { color: inherit; text-decoration: none; }
+  .wrap{
+    max-width: 930px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+  /* Header */
+  .page-head{
+    padding: 40px 0 8px;
+  }
+  .page-head h1{
+    font-size: 2rem;
+    margin: 0 0 10px;
+  }
+  .page-head p{
+    color: var(--ink-soft);
+    font-size: 0.98rem;
+    max-width: 46ch;
+    margin: 0;
+  }
+  hr.rule{
+    border: none;
+    border-top: 1px solid var(--line);
+    margin: 32px 0;
+  }
+  /* Form section */
+  .form-title{
+    font-size: 1.3rem;
+    margin: 0 0 18px;
+  }
+  .form-sub{
+    color: var(--ink-soft);
+    font-size: 0.92rem;
+    margin: 0 0 22px;
+  }
+  .field{
+    margin-bottom: 18px;
+  }
+  .field label{
+    display:block;
+    font-size: 0.88rem;
+    color: var(--ink-soft);
+    margin-bottom: 6px;
+    font-family: -apple-system, Segoe UI, Roboto, sans-serif;
+  }
+  .field input,
+  .field select,
+  .field textarea{
+    width: 100%;
+    border: 1px solid var(--line);
+    background: #fff;
+    border-radius: 8px;
+    padding: 11px 13px;
+    font-family: -apple-system, Segoe UI, Roboto, sans-serif;
+    font-size: 0.94rem;
+    color: var(--ink);
+  }
+  .field input:focus,
+  .field select:focus,
+  .field textarea:focus{
+    outline: none;
+    border-color: var(--rust);
+    box-shadow: 0 0 0 3px rgba(183,71,42,0.12);
+  }
+  .field textarea{ resize: vertical; min-height: 110px; }
+  .btn-send{
+    font-family: -apple-system, Segoe UI, Roboto, sans-serif;
+    background: var(--rust);
+    color: #fff;
+    border: none;
+    padding: 12px 26px;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: background 0.15s ease;
+  }
+  .btn-send:hover{ background: var(--rust-dark); }
+  /* Success alert, styled like the "cara merawat" tip box */
+  .notice{
+    display:none;
+    background: var(--cream-card);
+    border-radius: 10px;
+    padding: 16px 18px;
+    font-family: -apple-system, Segoe UI, Roboto, sans-serif;
+    font-size: 0.9rem;
+    color: var(--ink);
+    margin-top: 18px;
+  }
+  .notice.show{ display:block; }
+  .notice strong{ color: var(--rust); }
+  footer{
+    background: #212529;
+    color: #fff;
+    border-top: none;
+    padding: 20px 0;
+    margin-top: 40px;
+  }
+  .socials{
+    display:flex;
+    justify-content:flex-end;
+    gap: 24px;
+    margin-bottom: 0;
+  }
+  .socials a{
+    color: #fff;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  }
+  footer .copy{
+    font-size: 0.95rem;
+    color: #fff;
+    font-family: -apple-system, Segoe UI, Roboto, sans-serif;
+    font-weight: 700;
+  }
+  @media (max-width: 480px){
+    .contact-grid{ grid-template-columns: 1fr; }
+    .nav-links{ gap: 14px; font-size: 0.85rem; }
+  }
+
+  .main-content {
+    max-width: 960px;
+    margin: 0 auto;
+  }
+
+  .activity-card {
+    height: 100%;
+    background: #fff;
+    border: 1px solid #d5d5d5;
+    border-radius: 6px;
+    padding: 20px;
+    box-shadow: 0 2px 3px rgba(0,0,0,.08);
+  }
+
+  .activity-icon {
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #dbeafe;
+    color: #123f78;
+    border-radius: 50%;
+    font-size: 1.2rem;
+    margin-bottom: 14px;
+  }
+
+  .activity-card h6 {
+    font-size: 1.1rem;
+    color: var(--ink);
+    margin-bottom: 6px !important;
+  }
+
+  .activity-card p {
+    line-height: 1.4;
+  }
+
+  .participant-box {
+    background: #fff;
+    border: 1px solid #d5d5d5;
+    border-radius: 6px;
+    overflow: hidden;
+    box-shadow: 0 2px 3px rgba(0,0,0,.08);
+  }
+
+  .participant-box .table {
+    margin-bottom: 0;
+  }
+
+  .participant-box .table td,
+  .participant-box .table th {
+    vertical-align: middle;
+  }
+
+  @media (max-width: 767px) {
+    .wrap { max-width: 100%; }
+  }
+
+    </style>
+<!--STYLE END-->
+  </head>
+  <body>
+    <div style="background: var(--cream); min-height: 100vh;">
+
+
+<!--NAVBAR START-->
+<section id="Beranda">
+<nav class="navbar navbar-expand-lg bg-white rounded shadow-sm mb-5">
+  <div class="container">
+    <a class="navbar-brand fw-bold" href="#">Portal Ekstrakurikuler</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav ms-auto">
+        <a class="nav-link" href="#Daftar">Daftar peserta</a>
+        <a class="nav-link" href="#Formulir">Formulir</a>
+      </div>
+    </div>
+  </div>
+</nav>
+</section>
+<!--NAVBAR END-->
+
+<!--TEXT1 START-->
+<div class="hero">
+    <div class="container">
+      <div class="row align-items-start g-5">
+        <div class="col-lg-6">
+        <h1>Daftar ekstrakurikuler semester ini</h1>
+    </div>
+    <div class="col-lg-6">
+        <p>Isi formulir untuk mendaftar. Setiap siswa memilih satu kegiatan. data yang sudah disimpan langsung muncul di tabel, sehingga pembina dapat memeriksa siapa saja yang terdaftar sebelum latihan pertama.</p>
+        <p>Jika ada kesalahan penulisan nama atau kelas, hubungi pembina kegiatan untuk memperbaikinya.</p>
+        </div>
+      </div>
+    </div>
+</div>
+<!--TEXT1 END-->
+
+<!--GUTTERS (TEXT) START-->
+<section class="container mt-5">
+ <h2 class="mb-3">Kegiatan yang tersedia</h2>
+ <div class="row g-3">
+    <div class="col-lg-3 col-md-6">
+      <div class="activity-card">
+        <div class="activity-icon">
+          <i class="fa-solid fa-basketball"></i>
+        </div>
+          <h6>Basket</h6>
+          <p>Belajar teknik dasar seperti dribel, operan, dan tembakan, lalu bermain sebagai satu tim.</p>
+      </div>
+    </div>
+    <div class="col-lg-3 col-md-6">
+      <div class="activity-card">
+        <div class="activity-icon">
+          <i class="fa-solid fa-music"></i>
+        </div>
+          <h6>Paduan suara</h6>
+                <p>Melatih pernapasan, ketepatan nada, dan kekompakan suara untuk tampil bersama.</p>
+      </div>
+    </div>
+    <div class="col-lg-3 col-md-6">
+      <div class="activity-card">
+        <div class="activity-icon">
+          <i class="fa-solid fa-robot"></i>
+        </div>
+          <h6>Robotik</h6>
+          <p>Merakit dan memprogram robot sederhana sambil belajar memecahkan masalah.</p>
+      </div>
+    </div>
+    <div class="col-lg-3 col-md-6">
+      <div class="activity-card">
+        <div class="activity-icon">
+          <i class="fa-solid fa-newspaper"></i>
+        </div>
+          <h6>Jurnalistik</h6>
+          <p>Belajar mencari berita, menulis artikel, dan mengelola majalah atau mading sekolah.</p>
+      </div>
+    </div>
+ </div>
+</section>
+<!--GUTTERS (TEXT) END-->
+
+<!--TABLE START-->
+<section id="Daftar" class="container main-content mt-4">
+  <div class="participant-box">
+    <div class="d-flex justify-content-between align-items-center p-3 border-bottom">
+        <h2 class="h4 mb-0 fw-bold">Daftar peserta</h2>
+        <span class="badge bg-secondary text-white rounded-pill px-3 py-2">4 siswa</span>
+    </div>
+<table class="table table-striped">
+  <thead class="table-light">
+    <tr>
+      <th scope="col">No</th>
+      <th scope="col">Nama</th>
+      <th scope="col">Kelas</th>
+      <th scope="col">Kegiatan</th>
+      <th scope="col">Catatan</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td scope="row">1</td>
+      <td>Andi Pratama</td>
+      <td>X-2</td>
+      <td><span class="badge bg-primary">Basket</span></td>
+      <td>Pemain baru</td>
+    </tr>
+    <tr>
+      <td scope="row">2</td>
+      <td>Bella Kristanti</td>
+      <td>XI-1</td>
+      <td><span class="badge bg-primary">Paduan suara</span></td>
+      <td>Sudah dua tahun ikut</td>
+    </tr>
+    <tr>
+      <td scope="row">3</td>
+      <td>Christian Wibowo</td>
+      <td>X-3</td>
+      <td><span class="badge bg-primary">Robotik</span></td>
+      <td>Pemula</td>
+    </tr>
+    <tr>
+      <td scope="row">4</td>
+      <td>Dewi Lestari</td>
+      <td>X11-2</td>
+      <td><span class="badge bg-primary">Jurnalistik</span></td>
+      <td>Ingin ikut liputan</td>
+    </tr>
+  </tbody>
+</table>
+</section>
+<!--TABLE END-->
+
+<!--WRAP START-->
+<section id="Formulir">
+<div class="wrap">
+    <hr class="rule">
+    <div class="form-title">Formulir pendaftaran</div>
+    <form id="contactForm">
+      <div class="field">
+        <label for="nama">Nama lengkap</label>
+        <input type="text" id="nama" placeholder="Tulis nama sesuai rapot">
+      </div>
+      <div class="field">
+        <label for="email">Kelas</label>
+        <input type="text" id="kelas" placeholder="Contoh: X-2">
+      </div>
+      <div class="field">
+        <label for="kegiatan">Kegiatan</label>
+        <select id="kegiatan" class="form-select">
+          <option>Basket</option>
+          <option>Paduan suara</option>
+          <option>Robotik</option>
+          <option>Jurnalistik</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="pesan">Catatan untuk pembina</label>
+        <textarea id="pesan" placeholder="Pengalaman atau hal yang perlu diketahui pembina"></textarea>
+      </div>
+      <div class="mb-4 form-check">
+        <input type="checkbox" class="form-check-input" id="izin">
+        <label class= "form-check-label text-secondary small" for="izin">
+            Orang tua atau wali sudah mengizinkan
+        </label>
+      </div>
+      <button type="submit" class="btn-send">Simpan pendaftaran</button>
+      <div class="notice" id="successNotice">
+        <strong>Terkirim.</strong> Pesan anda sudah kami terima, pembina eskul akan membalas
+        segera.
+      </div>
+    </form>
+</div>
+</section>
+<!--WRAP END-->
+
+<!-- FOOTER START -->
+<footer>
+    <div class="socials">
+        <a href="https://www.instagram.com"><i class="fa-brands fa-instagram"></i></a>
+        <a href="https://www.facebook.com"><i class="fa-brands fa-facebook-f"></i></a>
+        <a href="https://www.tiktok.com"><i class="fa-brands fa-tiktok"></i></a>
+    </div>
+    <div class="copy">Portal Ekstrakurikuler</div>
+</footer>
+<!-- FOOTER END -->
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+   </div>
+  </body>
+</html>
